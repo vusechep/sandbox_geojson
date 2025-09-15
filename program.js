@@ -26,3 +26,27 @@ var layer=L.tileLayer (urlMap, config);
 
 //agregar la capa al mapa
 layer.addTo(map);
+
+// cargar un archivo Geojson
+//1. abrir el archivo. En js hay que tener cuidado con procesos que sean demorados
+// porque js no es sincrono. Es decir, si una sentancia se demora, js
+//continúa con las otras.
+//2. Convertir el contenudo de ese archivo a formato json
+
+async function leerGeoJSON(url) {
+    //fetch (): Almacenar un recurso (obtener un recurso)
+    var response = await fetch(url);
+    return await response.json();
+}
+
+// CORRECCIÓN: Añadir await y hacer la función async
+async function cargarGeoJSON() {
+    var myFile = await leerGeoJSON('map.geojson'); // ← Aquí faltaba el await
+
+    //3. Agregar el geojson al mapa
+    const geoLayer = L.geoJSON(myFile);
+    geoLayer.addTo(map);
+}
+
+// Llamar a la función para cargar el GeoJSON
+cargarGeoJSON();
