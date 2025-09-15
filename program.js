@@ -12,5 +12,17 @@ var map = L.map('map');
 
 map. setView([4.628132185875404, -74.06629398071726], 20);
 
-
 //crear un objeto capa de tesewlas (mapa base)
+
+//L.tileLayer (url de donde voy a "extraer" el mapa, un JSON con los valores de config )
+
+var urlMap = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+var config = {
+    maxZoom : 19
+};
+
+var layer=L.tileLayer (urlMap, config);
+
+//agregar la capa al mapa
+layer.addTo(map);
