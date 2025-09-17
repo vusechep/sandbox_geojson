@@ -44,7 +44,7 @@ async function cargarGeoJSON() {
     var myFile = await leerGeoJSON('map.geojson'); // ← Aquí faltaba el await
 
     //3. Agregar el geojson al mapa
-    const geoLayer = L.geoJSON(myFile);
+    const geoLayer = L.GeoJSON(myFile);
     geoLayer.addTo(map);
 }
 
